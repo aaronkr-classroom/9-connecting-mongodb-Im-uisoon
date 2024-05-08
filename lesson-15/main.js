@@ -18,7 +18,7 @@ const mongoose = require("mongoose"); // Mongoose 모듈의 요청
 mongoose.Promise = global.Promise; // 필요 없을 것 같은데?
 
 mongoose.connect(
-  "mongodb://localhost:27017/recipe_db", // 데이터베이스 연결 설정
+  "mongodb+srv://limuisoon:hXqZU5Pz97N2Rty6@ut-node.mpzg08n.mongodb.net/?retryWrites=true&w=majority&appName=ut-node", // 데이터베이스 연결 설정
   { useNewUrlParser: true }
 );
 
@@ -64,10 +64,10 @@ app.get("/name/:myName", homeController.respondWithName2);
  * 구독을 위한 라우트
  */
 // 구독 페이지를 위한 GET 라우트
-
+app.get("/subscribe", subscribersController.getSubscriptionPage);
 // 구독 데이터 처리를 위한 POST 라우트
-
-
+app.post("/subscribe", subscribersController.saveSubscriber);
+app.get("/subscribers", subscribersController.getAllSubscribers2); 
 /**
  * Listing 11.4 (p. 169)
  * 사용자 정의 메시지를 통한 에러와 없는 라우트 처리
